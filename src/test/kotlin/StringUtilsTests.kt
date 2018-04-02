@@ -1,7 +1,6 @@
 import com.github.biconou.utils.isOnlySpace
 import com.github.biconou.utils.isOnlySpaceEx
 import com.github.biconou.utils.isOnlySpaceEx8
-import org.apache.commons.lang.StringUtils
 import org.junit.Assert
 import org.junit.Test
 
