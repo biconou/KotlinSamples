@@ -5,21 +5,22 @@ import ru.blizzed.discogsdb.DiscogsDBApi
 import ru.blizzed.discogsdb.params.DiscogsDBParams
 
 
+
 fun main(args: Array<String>) {
 
     DiscogsDBApi.initialize(DiscogsAuthData("BIqHCSNxDnaIPhqCiZoc", "xYpdaTwFFISNXwMOlvuGVossTaRtnkHs"))
 
-    val userInput = "korn"
+    println(searchArtist("The Beatles")?.id)
 
-    val page = DiscogsDBApi.searchArtist(
-            DiscogsDBParams.QUERY.of(userInput)
+    val albumName = "The Beatles"
+
+    val page = DiscogsDBApi.searchMaster(
+            DiscogsDBParams.QUERY.of(albumName)
             ).execute()
 
-    val kornId = page.getContent().get(0).getId()
+    val master = DiscogsDBApi.getMasterRelease(page.content.get(0).id).execute()
 
-    val korn = DiscogsDBApi.getArtist(kornId).execute()
-
-    print(kornId)
-
-
+    println("${master.uri}")
+    println("${master.artists.get(0).name} - ${master.title} - ${master.year}")
+    downloadCover(master)
 }
